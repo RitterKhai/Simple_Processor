@@ -13,7 +13,7 @@ BEGIN
 		IF (Reset = '0') THEN
 			Q <= (others => '0');
 		ELSIF Load = '1' AND rising_edge(Clk) THEN
-			Q <= D;
+			Q <= Q;
 		END IF;
 END PROCESS;
 END behavioral;
