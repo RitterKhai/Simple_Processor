@@ -1,0 +1,126 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+USE ieee.std_logic_arith.all;
+USE ieee.std_logic_signed.all;
+USE ieee.numeric_std.all;
+ENTITY Processor IS
+PORT ( 	clk, Reset, Run: IN std_logic;
+			DIN : IN STD_LOGIC_VECTOR(8 DOWNTO 0);
+			HEX4, HEX5: OUT STD_LOGIC_VECTOR(0 TO 6);
+			Done: BUFFER STD_LOGIC;
+			W: BUFFER STD_LOGIC;
+			ADDR, DOUT: BUFFER STD_LOGIC_VECTOR(8 DOWNTO 0)
+);
+END Processor;
+ARCHITECTURE Behavior OF Processor IS
+
+COMPONENT FSM_controlunit
+PORT ( 	clk, Reset, Run: IN std_logic;
+			I, G: IN std_logic_vector(8 DOWNTO 0);
+			G_O, Din_O: OUT std_logic;
+			R_O: OUT std_logic_vector(0 TO 7);
+			IR_I, ADD_SUB, A_I, G_I: OUT std_logic;
+			ADDR_I, DOUT_I: OUT std_logic;
+			R_I : OUT STD_LOGIC_VECTOR(0 TO 7);
+			Done, incr_PC, W_D: BUFFER std_logic);
+END COMPONENT;
+
+COMPONENT regn
+generic (n: natural:= 9); 
+PORT ( 	D : IN STD_LOGIC_VECTOR(n-1 downto 0);
+			Clk, Reset, Load :IN STD_LOGIC;
+			Q : OUT STD_LOGIC_VECTOR(n-1 downto 0));
+END COMPONENT;
+
+COMPONENT PC IS
+PORT ( 	D: IN STD_LOGIC_VECTOR(8 DOWNTO 0);
+			CLK, RESET, E, L: IN STD_LOGIC;
+			Q: OUT STD_LOGIC_VECTOR(8 downto 0));
+END COMPONENT;
+
+COMPONENT mineDFFpositive_edge IS
+PORT (	D, Clk, RESET : IN STD_LOGIC;
+			Q : OUT STD_LOGIC);
+END COMPONENT;
+
+COMPONENT mine10to1mux
+PORT ( 	Din, R0, R1 , R2, R3, R4, R5, R6, R7, Gout : IN STD_LOGIC_VECTOR(8 DOWNTO 0);
+			sel : IN STD_LOGIC_VECTOR(0 TO 9);
+			Outmux : OUT STD_LOGIC_VECTOR(8 DOWNTO 0));
+END COMPONENT;
+
+COMPONENT my_7seghex IS
+PORT ( 	C: IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+			Z : OUT STD_LOGIC_VECTOR(0 TO 6));
+END COMPONENT;
+
+SIGNAL R_O, R_I: STD_LOGIC_VECTOR(0 TO 7);
+SIGNAL G_O, Din_O, IR_I, ADD_SUB, A_I, G_I, E, L, ADDR_I, DOUT_I, W_D, incr_PC: STD_LOGIC;
+SIGNAL R_OUT_0, R_OUT_1, R_OUT_2, R_OUT_3, R_OUT_4, R_OUT_5, R_OUT_6, PC_OUT : STD_LOGIC_VECTOR(8 DOWNTO 0);
+SIGNAL A_OUT, ADD_SUB_RES, G_OUT, DIN_IR, BusWires: STD_LOGIC_VECTOR(8 DOWNTO 0);
+SIGNAL COUT : STD_LOGIC;
+SIGNAL Sel : STD_LOGIC_VECTOR(0 to 9); 
+--SIGNAL ADDR, DOUT: STD_LOGIC_VECTOR(8 DOWNTO 0);
+BEGIN
+iFSM_controlunit: FSM_controlunit PORT MAP(	clk => clk, 
+															Reset => Reset, 
+															Run => Run, 
+															I(8 DOWNTO 0) => DIN_IR(8 DOWNTO 0), 
+															G(8 DOWNTO 0) => G_OUT(8 DOWNTO 0),
+															G_O => G_O,
+															Din_O => Din_O,
+															R_O(0 TO 7) => R_O(0 TO 7),
+															IR_I => IR_I,
+															ADD_SUB => ADD_SUB,
+															A_I => A_I,
+															G_I => G_I,
+															ADDR_I => ADDR_I,
+															DOUT_I => DOUT_I,
+															R_I(0 TO 7) => R_I(0 TO 7),
+															Done => Done,
+															incr_PC => incr_PC,
+															W_D => W_D
+														);
+														
+iregn_0: regn PORT MAP(BusWires(8 DOWNTO 0), Clk, Reset, R_I(0), R_OUT_0(8 DOWNTO 0));
+iregn_1: regn PORT MAP(BusWires(8 DOWNTO 0), Clk, Reset, R_I(1), R_OUT_1(8 DOWNTO 0));
+iregn_2: regn PORT MAP(BusWires(8 DOWNTO 0), Clk, Reset, R_I(2), R_OUT_2(8 DOWNTO 0));
+iregn_3: regn PORT MAP(BusWires(8 DOWNTO 0), Clk, Reset, R_I(3), R_OUT_3(8 DOWNTO 0));
+iregn_4: regn PORT MAP(BusWires(8 DOWNTO 0), Clk, Reset, R_I(4), R_OUT_4(8 DOWNTO 0));
+iregn_5: regn PORT MAP(BusWires(8 DOWNTO 0), Clk, Reset, R_I(5), R_OUT_5(8 DOWNTO 0));
+iregn_6: regn PORT MAP(BusWires(8 DOWNTO 0), Clk, Reset, R_I(6), R_OUT_6(8 DOWNTO 0));
+
+iPC: PC PORT MAP(BusWires(8 DOWNTO 0), Clk, RESET, incr_PC, R_I(7), PC_OUT(8 DOWNTO 0));
+
+iregn_A: regn PORT MAP(BusWires(8 DOWNTO 0), Clk, Reset, A_I, A_OUT(8 DOWNTO 0));
+iregn_G: regn PORT MAP(ADD_SUB_RES(8 DOWNTO 0), Clk, Reset, G_I, G_OUT(8 DOWNTO 0));
+iregn_IR: regn PORT MAP(DIN(8 DOWNTO 0), Clk, Reset, IR_I, DIN_IR(8 DOWNTO 0));
+iregn_ADDR: regn PORT MAP(BusWires(8 DOWNTO 0), Clk, Reset, ADDR_I, ADDR(8 DOWNTO 0));
+iregn_DOUT: regn PORT MAP(BusWires(8 DOWNTO 0), Clk, Reset, DOUT_I, DOUT(8 DOWNTO 0));
+iregn_WD: mineDFFpositive_edge PORT MAP(W_D, clk, Reset,W);
+
+Sel <= R_O & G_O & Din_O; 
+Imine10to1mux: mine10to1mux PORT MAP(	DIN(8 DOWNTO 0) => DIN(8 DOWNTO 0),
+													R0(8 DOWNTO 0) => R_OUT_0(8 DOWNTO 0),
+													R1(8 DOWNTO 0) => R_OUT_1(8 DOWNTO 0),
+													R2(8 DOWNTO 0) => R_OUT_2(8 DOWNTO 0),
+													R3(8 DOWNTO 0) => R_OUT_3(8 DOWNTO 0),
+													R4(8 DOWNTO 0) => R_OUT_4(8 DOWNTO 0),
+													R5(8 DOWNTO 0) => R_OUT_5(8 DOWNTO 0),
+													R6(8 DOWNTO 0) => R_OUT_6(8 DOWNTO 0),
+													R7(8 DOWNTO 0) => PC_OUT(8 DOWNTO 0),
+													Gout(8 DOWNTO 0) => G_OUT(8 DOWNTO 0),
+													sel(0 TO 9) => sel (0 TO 9),
+													Outmux(8 DOWNTO 0) => BusWires(8 DOWNTO 0)
+												);
+alu: PROCESS (ADD_SUB, A_OUT, BusWires) 
+BEGIN
+	IF ADD_SUB = '0' THEN 
+		ADD_SUB_RES <= A_OUT + BusWires;
+	ELSE 
+		ADD_SUB_RES <= A_OUT - BusWires;
+	END IF; 
+END PROCESS; 
+imy_7seghex_4: my_7seghex PORT MAP (R_OUT_4(3 DOWNTO 0), HEX4(0 TO 6));
+imy_7seghex_5: my_7seghex PORT MAP (R_OUT_5(3 DOWNTO 0), HEX5(0 TO 6));
+END Behavior;

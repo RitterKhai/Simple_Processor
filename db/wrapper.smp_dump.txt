@@ -1,0 +1,20 @@
+
+State Machine - |wrapper|Processor:iProcessor|FSM_controlunit:iFSM_controlunit|pr_state
+Name pr_state.MVNZ pr_state.ST2 pr_state.ST1 pr_state.LD2 pr_state.LD1 pr_state.SUB3 pr_state.SUB2 pr_state.SUB1 pr_state.ADD3 pr_state.ADD2 pr_state.ADD1 pr_state.MVI3 pr_state.MVI2 pr_state.MVI1 pr_state.MV pr_state.INITIAL pr_state.IWAIT 
+pr_state.IWAIT 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+pr_state.INITIAL 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
+pr_state.MV 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
+pr_state.MVI1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
+pr_state.MVI2 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
+pr_state.MVI3 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
+pr_state.ADD1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
+pr_state.ADD2 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
+pr_state.ADD3 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
+pr_state.SUB1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
+pr_state.SUB2 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
+pr_state.SUB3 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
+pr_state.LD1 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
+pr_state.LD2 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
+pr_state.ST1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+pr_state.ST2 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+pr_state.MVNZ 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 

@@ -1,0 +1,900 @@
+Analysis & Synthesis report for wrapper
+Thu Nov 02 22:25:20 2023
+Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Analysis & Synthesis RAM Summary
+  9. State Machine - |wrapper|Processor:iProcessor|FSM_controlunit:iFSM_controlunit|pr_state
+ 10. User-Specified and Inferred Latches
+ 11. General Register Statistics
+ 12. Registers Added for RAM Pass-Through Logic
+ 13. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 14. Source assignments for memory:imemory|altsyncram:user_RAM_rtl_0|altsyncram_sam1:auto_generated
+ 15. Parameter Settings for User Entity Instance: Processor:iProcessor|regn:iregn_0
+ 16. Parameter Settings for User Entity Instance: Processor:iProcessor|regn:iregn_1
+ 17. Parameter Settings for User Entity Instance: Processor:iProcessor|regn:iregn_2
+ 18. Parameter Settings for User Entity Instance: Processor:iProcessor|regn:iregn_3
+ 19. Parameter Settings for User Entity Instance: Processor:iProcessor|regn:iregn_4
+ 20. Parameter Settings for User Entity Instance: Processor:iProcessor|regn:iregn_5
+ 21. Parameter Settings for User Entity Instance: Processor:iProcessor|regn:iregn_6
+ 22. Parameter Settings for User Entity Instance: Processor:iProcessor|regn:iregn_A
+ 23. Parameter Settings for User Entity Instance: Processor:iProcessor|regn:iregn_G
+ 24. Parameter Settings for User Entity Instance: Processor:iProcessor|regn:iregn_IR
+ 25. Parameter Settings for User Entity Instance: Processor:iProcessor|regn:iregn_ADDR
+ 26. Parameter Settings for User Entity Instance: Processor:iProcessor|regn:iregn_DOUT
+ 27. Parameter Settings for User Entity Instance: memory:imemory
+ 28. Parameter Settings for User Entity Instance: regn:iregn
+ 29. Parameter Settings for Inferred Entity Instance: memory:imemory|altsyncram:user_RAM_rtl_0
+ 30. altsyncram Parameter Settings by Entity Instance
+ 31. Port Connectivity Checks: "my_7seghex:imy_7seghex_2"
+ 32. Port Connectivity Checks: "Processor:iProcessor|FSM_controlunit:iFSM_controlunit|dec3to8:Idec3to8_7"
+ 33. Port Connectivity Checks: "Processor:iProcessor|FSM_controlunit:iFSM_controlunit|dec3to8:Idec3to8_Y"
+ 34. Port Connectivity Checks: "Processor:iProcessor|FSM_controlunit:iFSM_controlunit|dec3to8:Idec3to8_X"
+ 35. Post-Synthesis Netlist Statistics for Top Partition
+ 36. Elapsed Time Per Partition
+ 37. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2018  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details.
+
+
+
++-------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                  ;
++---------------------------------+---------------------------------------------+
+; Analysis & Synthesis Status     ; Successful - Thu Nov 02 22:25:20 2023       ;
+; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
+; Revision Name                   ; wrapper                                     ;
+; Top-level Entity Name           ; wrapper                                     ;
+; Family                          ; Cyclone V                                   ;
+; Logic utilization (in ALMs)     ; N/A                                         ;
+; Total registers                 ; 187                                         ;
+; Total pins                      ; 55                                          ;
+; Total virtual pins              ; 0                                           ;
+; Total block memory bits         ; 1,152                                       ;
+; Total DSP Blocks                ; 0                                           ;
+; Total HSSI RX PCSs              ; 0                                           ;
+; Total HSSI PMA RX Deserializers ; 0                                           ;
+; Total HSSI TX PCSs              ; 0                                           ;
+; Total HSSI PMA TX Serializers   ; 0                                           ;
+; Total PLLs                      ; 0                                           ;
+; Total DLLs                      ; 0                                           ;
++---------------------------------+---------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                             ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                          ; Setting            ; Default Value      ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                          ; 5CGXFC7C7F23C8     ;                    ;
+; Top-level entity name                                                           ; wrapper            ; wrapper            ;
+; Family name                                                                     ; Cyclone V          ; Cyclone V          ;
+; Use smart compilation                                                           ; Off                ; Off                ;
+; Enable parallel Assembler and Timing Analyzer during compilation                ; On                 ; On                 ;
+; Enable compact report table                                                     ; Off                ; Off                ;
+; Restructure Multiplexers                                                        ; Auto               ; Auto               ;
+; MLAB Add Timing Constraints For Mixed-Port Feed-Through Mode Setting Don't Care ; Off                ; Off                ;
+; Create Debugging Nodes for IP Cores                                             ; Off                ; Off                ;
+; Preserve fewer node names                                                       ; On                 ; On                 ;
+; Intel FPGA IP Evaluation Mode                                                   ; Enable             ; Enable             ;
+; Verilog Version                                                                 ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                                    ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                        ; Auto               ; Auto               ;
+; Safe State Machine                                                              ; Off                ; Off                ;
+; Extract Verilog State Machines                                                  ; On                 ; On                 ;
+; Extract VHDL State Machines                                                     ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                               ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                      ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                                  ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                         ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                       ; On                 ; On                 ;
+; Parallel Synthesis                                                              ; On                 ; On                 ;
+; DSP Block Balancing                                                             ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                              ; On                 ; On                 ;
+; Power-Up Don't Care                                                             ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                                    ; Off                ; Off                ;
+; Remove Duplicate Registers                                                      ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                            ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                          ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                           ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                       ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                            ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                             ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                                  ; Off                ; Off                ;
+; Optimization Technique                                                          ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                              ; 70                 ; 70                 ;
+; Auto Carry Chains                                                               ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                            ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                           ; Off                ; Off                ;
+; Auto ROM Replacement                                                            ; On                 ; On                 ;
+; Auto RAM Replacement                                                            ; On                 ; On                 ;
+; Auto DSP Block Replacement                                                      ; On                 ; On                 ;
+; Auto Shift Register Replacement                                                 ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                                 ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                                   ; On                 ; On                 ;
+; Strict RAM Replacement                                                          ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                               ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                           ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                                   ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                             ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                               ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                         ; On                 ; On                 ;
+; Report Parameter Settings                                                       ; On                 ; On                 ;
+; Report Source Assignments                                                       ; On                 ; On                 ;
+; Report Connectivity Checks                                                      ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                              ; Off                ; Off                ;
+; Synchronization Register Chain Length                                           ; 3                  ; 3                  ;
+; Power Optimization During Synthesis                                             ; Normal compilation ; Normal compilation ;
+; HDL message level                                                               ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                                 ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                        ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                              ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                       ; 100                ; 100                ;
+; Clock MUX Protection                                                            ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                     ; Off                ; Off                ;
+; Block Design Naming                                                             ; Auto               ; Auto               ;
+; SDC constraint protection                                                       ; Off                ; Off                ;
+; Synthesis Effort                                                                ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal                    ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                            ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                              ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                     ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                          ; On                 ; On                 ;
+; Automatic Parallel Synthesis                                                    ; On                 ; On                 ;
+; Partial Reconfiguration Bitstream ID                                            ; Off                ; Off                ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 16          ;
+; Maximum allowed            ; 16          ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 16          ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;   0.0%      ;
+;     Processors 3-16        ;   0.0%      ;
++----------------------------+-------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                     ;
++----------------------------------+-----------------+------------------------------+------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                 ; Library ;
++----------------------------------+-----------------+------------------------------+------------------------------------------------------------------------------+---------+
+; wrapper.vhdl                     ; yes             ; User VHDL File               ; D:/code/quartus/lab6/wrapper.vhdl                                            ;         ;
+; regn.vhdl                        ; yes             ; User VHDL File               ; D:/code/quartus/lab6/regn.vhdl                                               ;         ;
+; Processor.vhdl                   ; yes             ; User VHDL File               ; D:/code/quartus/lab6/Processor.vhdl                                          ;         ;
+; PC.vhdl                          ; yes             ; User VHDL File               ; D:/code/quartus/lab6/PC.vhdl                                                 ;         ;
+; my_7seghex.vhdl                  ; yes             ; User VHDL File               ; D:/code/quartus/lab6/my_7seghex.vhdl                                         ;         ;
+; mineDFFpositive_edge.vhdl        ; yes             ; User VHDL File               ; D:/code/quartus/lab6/mineDFFpositive_edge.vhdl                               ;         ;
+; mine10to1mux.vhdl                ; yes             ; User VHDL File               ; D:/code/quartus/lab6/mine10to1mux.vhdl                                       ;         ;
+; memory.vhdl                      ; yes             ; User VHDL File               ; D:/code/quartus/lab6/memory.vhdl                                             ;         ;
+; FSM_controlunit.vhdl             ; yes             ; User VHDL File               ; D:/code/quartus/lab6/FSM_controlunit.vhdl                                    ;         ;
+; dec3to8.vhdl                     ; yes             ; User VHDL File               ; D:/code/quartus/lab6/dec3to8.vhdl                                            ;         ;
+; altsyncram.tdf                   ; yes             ; Megafunction                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/altsyncram.tdf        ;         ;
+; stratix_ram_block.inc            ; yes             ; Megafunction                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/stratix_ram_block.inc ;         ;
+; lpm_mux.inc                      ; yes             ; Megafunction                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_mux.inc           ;         ;
+; lpm_decode.inc                   ; yes             ; Megafunction                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_decode.inc        ;         ;
+; aglobal181.inc                   ; yes             ; Megafunction                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/aglobal181.inc        ;         ;
+; a_rdenreg.inc                    ; yes             ; Megafunction                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/a_rdenreg.inc         ;         ;
+; altrom.inc                       ; yes             ; Megafunction                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/altrom.inc            ;         ;
+; altram.inc                       ; yes             ; Megafunction                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/altram.inc            ;         ;
+; altdpram.inc                     ; yes             ; Megafunction                 ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/altdpram.inc          ;         ;
+; db/altsyncram_sam1.tdf           ; yes             ; Auto-Generated Megafunction  ; D:/code/quartus/lab6/db/altsyncram_sam1.tdf                                  ;         ;
++----------------------------------+-----------------+------------------------------+------------------------------------------------------------------------------+---------+
+
+
++---------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary             ;
++---------------------------------------------+-----------+
+; Resource                                    ; Usage     ;
++---------------------------------------------+-----------+
+; Estimate of Logic utilization (ALMs needed) ; 140       ;
+;                                             ;           ;
+; Combinational ALUT usage for logic          ; 200       ;
+;     -- 7 input functions                    ; 0         ;
+;     -- 6 input functions                    ; 44        ;
+;     -- 5 input functions                    ; 26        ;
+;     -- 4 input functions                    ; 58        ;
+;     -- <=3 input functions                  ; 72        ;
+;                                             ;           ;
+; Dedicated logic registers                   ; 187       ;
+;                                             ;           ;
+; I/O pins                                    ; 55        ;
+; Total MLAB memory bits                      ; 0         ;
+; Total block memory bits                     ; 1152      ;
+;                                             ;           ;
+; Total DSP Blocks                            ; 0         ;
+;                                             ;           ;
+; Maximum fan-out node                        ; clk~input ;
+; Maximum fan-out                             ; 196       ;
+; Total fan-out                               ; 1792      ;
+; Average fan-out                             ; 3.54      ;
++---------------------------------------------+-----------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                          ;
++-------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-----------------------------------------------------------------------------------+----------------------+--------------+
+; Compilation Hierarchy Node                ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                               ; Entity Name          ; Library Name ;
++-------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-----------------------------------------------------------------------------------+----------------------+--------------+
+; |wrapper                                  ; 200 (2)             ; 187 (0)                   ; 1152              ; 0          ; 55   ; 0            ; |wrapper                                                                          ; wrapper              ; work         ;
+;    |Processor:iProcessor|                 ; 161 (10)            ; 144 (0)                   ; 0                 ; 0          ; 0    ; 0            ; |wrapper|Processor:iProcessor                                                     ; Processor            ; work         ;
+;       |FSM_controlunit:iFSM_controlunit|  ; 77 (76)             ; 17 (17)                   ; 0                 ; 0          ; 0    ; 0            ; |wrapper|Processor:iProcessor|FSM_controlunit:iFSM_controlunit                    ; FSM_controlunit      ; work         ;
+;          |dec3to8:Idec3to8_Y|             ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |wrapper|Processor:iProcessor|FSM_controlunit:iFSM_controlunit|dec3to8:Idec3to8_Y ; dec3to8              ; work         ;
+;       |PC:iPC|                            ; 18 (18)             ; 18 (18)                   ; 0                 ; 0          ; 0    ; 0            ; |wrapper|Processor:iProcessor|PC:iPC                                              ; PC                   ; work         ;
+;       |mine10to1mux:Imine10to1mux|        ; 42 (42)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |wrapper|Processor:iProcessor|mine10to1mux:Imine10to1mux                          ; mine10to1mux         ; work         ;
+;       |mineDFFpositive_edge:iregn_WD|     ; 0 (0)               ; 1 (1)                     ; 0                 ; 0          ; 0    ; 0            ; |wrapper|Processor:iProcessor|mineDFFpositive_edge:iregn_WD                       ; mineDFFpositive_edge ; work         ;
+;       |my_7seghex:imy_7seghex_4|          ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |wrapper|Processor:iProcessor|my_7seghex:imy_7seghex_4                            ; my_7seghex           ; work         ;
+;       |my_7seghex:imy_7seghex_5|          ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |wrapper|Processor:iProcessor|my_7seghex:imy_7seghex_5                            ; my_7seghex           ; work         ;
+;       |regn:iregn_0|                      ; 0 (0)               ; 9 (9)                     ; 0                 ; 0          ; 0    ; 0            ; |wrapper|Processor:iProcessor|regn:iregn_0                                        ; regn                 ; work         ;
+;       |regn:iregn_1|                      ; 0 (0)               ; 9 (9)                     ; 0                 ; 0          ; 0    ; 0            ; |wrapper|Processor:iProcessor|regn:iregn_1                                        ; regn                 ; work         ;
+;       |regn:iregn_2|                      ; 0 (0)               ; 9 (9)                     ; 0                 ; 0          ; 0    ; 0            ; |wrapper|Processor:iProcessor|regn:iregn_2                                        ; regn                 ; work         ;
+;       |regn:iregn_3|                      ; 0 (0)               ; 9 (9)                     ; 0                 ; 0          ; 0    ; 0            ; |wrapper|Processor:iProcessor|regn:iregn_3                                        ; regn                 ; work         ;
+;       |regn:iregn_4|                      ; 0 (0)               ; 9 (9)                     ; 0                 ; 0          ; 0    ; 0            ; |wrapper|Processor:iProcessor|regn:iregn_4                                        ; regn                 ; work         ;
+;       |regn:iregn_5|                      ; 0 (0)               ; 9 (9)                     ; 0                 ; 0          ; 0    ; 0            ; |wrapper|Processor:iProcessor|regn:iregn_5                                        ; regn                 ; work         ;
+;       |regn:iregn_6|                      ; 0 (0)               ; 9 (9)                     ; 0                 ; 0          ; 0    ; 0            ; |wrapper|Processor:iProcessor|regn:iregn_6                                        ; regn                 ; work         ;
+;       |regn:iregn_ADDR|                   ; 0 (0)               ; 9 (9)                     ; 0                 ; 0          ; 0    ; 0            ; |wrapper|Processor:iProcessor|regn:iregn_ADDR                                     ; regn                 ; work         ;
+;       |regn:iregn_A|                      ; 0 (0)               ; 9 (9)                     ; 0                 ; 0          ; 0    ; 0            ; |wrapper|Processor:iProcessor|regn:iregn_A                                        ; regn                 ; work         ;
+;       |regn:iregn_DOUT|                   ; 0 (0)               ; 9 (9)                     ; 0                 ; 0          ; 0    ; 0            ; |wrapper|Processor:iProcessor|regn:iregn_DOUT                                     ; regn                 ; work         ;
+;       |regn:iregn_G|                      ; 0 (0)               ; 9 (9)                     ; 0                 ; 0          ; 0    ; 0            ; |wrapper|Processor:iProcessor|regn:iregn_G                                        ; regn                 ; work         ;
+;       |regn:iregn_IR|                     ; 0 (0)               ; 9 (9)                     ; 0                 ; 0          ; 0    ; 0            ; |wrapper|Processor:iProcessor|regn:iregn_IR                                       ; regn                 ; work         ;
+;    |memory:imemory|                       ; 16 (16)             ; 34 (34)                   ; 1152              ; 0          ; 0    ; 0            ; |wrapper|memory:imemory                                                           ; memory               ; work         ;
+;       |altsyncram:user_RAM_rtl_0|         ; 0 (0)               ; 0 (0)                     ; 1152              ; 0          ; 0    ; 0            ; |wrapper|memory:imemory|altsyncram:user_RAM_rtl_0                                 ; altsyncram           ; work         ;
+;          |altsyncram_sam1:auto_generated| ; 0 (0)               ; 0 (0)                     ; 1152              ; 0          ; 0    ; 0            ; |wrapper|memory:imemory|altsyncram:user_RAM_rtl_0|altsyncram_sam1:auto_generated  ; altsyncram_sam1      ; work         ;
+;    |my_7seghex:imy_7seghex_0|             ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |wrapper|my_7seghex:imy_7seghex_0                                                 ; my_7seghex           ; work         ;
+;    |my_7seghex:imy_7seghex_1|             ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |wrapper|my_7seghex:imy_7seghex_1                                                 ; my_7seghex           ; work         ;
+;    |my_7seghex:imy_7seghex_3|             ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |wrapper|my_7seghex:imy_7seghex_3                                                 ; my_7seghex           ; work         ;
+;    |regn:iregn|                           ; 0 (0)               ; 9 (9)                     ; 0                 ; 0          ; 0    ; 0            ; |wrapper|regn:iregn                                                               ; regn                 ; work         ;
++-------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-----------------------------------------------------------------------------------+----------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis RAM Summary                                                                                                                                                       ;
++------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+------+------+
+; Name                                                                               ; Type ; Mode             ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size ; MIF  ;
++------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+------+------+
+; memory:imemory|altsyncram:user_RAM_rtl_0|altsyncram_sam1:auto_generated|ALTSYNCRAM ; AUTO ; Simple Dual Port ; 128          ; 9            ; 128          ; 9            ; 1152 ; None ;
++------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+------+------+
+
+
+Encoding Type:  One-Hot
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |wrapper|Processor:iProcessor|FSM_controlunit:iFSM_controlunit|pr_state                                                                                                                                                                                                        ;
++------------------+---------------+--------------+--------------+--------------+--------------+---------------+---------------+---------------+---------------+---------------+---------------+---------------+---------------+---------------+-------------+------------------+----------------+
+; Name             ; pr_state.MVNZ ; pr_state.ST2 ; pr_state.ST1 ; pr_state.LD2 ; pr_state.LD1 ; pr_state.SUB3 ; pr_state.SUB2 ; pr_state.SUB1 ; pr_state.ADD3 ; pr_state.ADD2 ; pr_state.ADD1 ; pr_state.MVI3 ; pr_state.MVI2 ; pr_state.MVI1 ; pr_state.MV ; pr_state.INITIAL ; pr_state.IWAIT ;
++------------------+---------------+--------------+--------------+--------------+--------------+---------------+---------------+---------------+---------------+---------------+---------------+---------------+---------------+---------------+-------------+------------------+----------------+
+; pr_state.IWAIT   ; 0             ; 0            ; 0            ; 0            ; 0            ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0           ; 0                ; 0              ;
+; pr_state.INITIAL ; 0             ; 0            ; 0            ; 0            ; 0            ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0           ; 1                ; 1              ;
+; pr_state.MV      ; 0             ; 0            ; 0            ; 0            ; 0            ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 1           ; 0                ; 1              ;
+; pr_state.MVI1    ; 0             ; 0            ; 0            ; 0            ; 0            ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 1             ; 0           ; 0                ; 1              ;
+; pr_state.MVI2    ; 0             ; 0            ; 0            ; 0            ; 0            ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 1             ; 0             ; 0           ; 0                ; 1              ;
+; pr_state.MVI3    ; 0             ; 0            ; 0            ; 0            ; 0            ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 1             ; 0             ; 0             ; 0           ; 0                ; 1              ;
+; pr_state.ADD1    ; 0             ; 0            ; 0            ; 0            ; 0            ; 0             ; 0             ; 0             ; 0             ; 0             ; 1             ; 0             ; 0             ; 0             ; 0           ; 0                ; 1              ;
+; pr_state.ADD2    ; 0             ; 0            ; 0            ; 0            ; 0            ; 0             ; 0             ; 0             ; 0             ; 1             ; 0             ; 0             ; 0             ; 0             ; 0           ; 0                ; 1              ;
+; pr_state.ADD3    ; 0             ; 0            ; 0            ; 0            ; 0            ; 0             ; 0             ; 0             ; 1             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0           ; 0                ; 1              ;
+; pr_state.SUB1    ; 0             ; 0            ; 0            ; 0            ; 0            ; 0             ; 0             ; 1             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0           ; 0                ; 1              ;
+; pr_state.SUB2    ; 0             ; 0            ; 0            ; 0            ; 0            ; 0             ; 1             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0           ; 0                ; 1              ;
+; pr_state.SUB3    ; 0             ; 0            ; 0            ; 0            ; 0            ; 1             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0           ; 0                ; 1              ;
+; pr_state.LD1     ; 0             ; 0            ; 0            ; 0            ; 1            ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0           ; 0                ; 1              ;
+; pr_state.LD2     ; 0             ; 0            ; 0            ; 1            ; 0            ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0           ; 0                ; 1              ;
+; pr_state.ST1     ; 0             ; 0            ; 1            ; 0            ; 0            ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0           ; 0                ; 1              ;
+; pr_state.ST2     ; 0             ; 1            ; 0            ; 0            ; 0            ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0           ; 0                ; 1              ;
+; pr_state.MVNZ    ; 1             ; 0            ; 0            ; 0            ; 0            ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0             ; 0           ; 0                ; 1              ;
++------------------+---------------+--------------+--------------+--------------+--------------+---------------+---------------+---------------+---------------+---------------+---------------+---------------+---------------+---------------+-------------+------------------+----------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; User-Specified and Inferred Latches                                                                                                                                    ;
++----------------------------------------------------------------------------+------------------------------------------------------------------+------------------------+
+; Latch Name                                                                 ; Latch Enable Signal                                              ; Free of Timing Hazards ;
++----------------------------------------------------------------------------+------------------------------------------------------------------+------------------------+
+; Processor:iProcessor|FSM_controlunit:iFSM_controlunit|nx_state.MV_885      ; Processor:iProcessor|FSM_controlunit:iFSM_controlunit|Selector47 ; yes                    ;
+; Processor:iProcessor|FSM_controlunit:iFSM_controlunit|nx_state.MVI3_822    ; Processor:iProcessor|FSM_controlunit:iFSM_controlunit|Selector47 ; yes                    ;
+; Processor:iProcessor|FSM_controlunit:iFSM_controlunit|nx_state.ADD3_759    ; Processor:iProcessor|FSM_controlunit:iFSM_controlunit|Selector47 ; yes                    ;
+; Processor:iProcessor|FSM_controlunit:iFSM_controlunit|nx_state.SUB3_696    ; Processor:iProcessor|FSM_controlunit:iFSM_controlunit|Selector47 ; yes                    ;
+; Processor:iProcessor|FSM_controlunit:iFSM_controlunit|nx_state.LD2_654     ; Processor:iProcessor|FSM_controlunit:iFSM_controlunit|Selector47 ; yes                    ;
+; Processor:iProcessor|FSM_controlunit:iFSM_controlunit|nx_state.ST2_612     ; Processor:iProcessor|FSM_controlunit:iFSM_controlunit|Selector47 ; yes                    ;
+; Processor:iProcessor|FSM_controlunit:iFSM_controlunit|nx_state.MVNZ_591    ; Processor:iProcessor|FSM_controlunit:iFSM_controlunit|Selector47 ; yes                    ;
+; Processor:iProcessor|FSM_controlunit:iFSM_controlunit|nx_state.INITIAL_906 ; Processor:iProcessor|FSM_controlunit:iFSM_controlunit|Selector47 ; yes                    ;
+; Processor:iProcessor|FSM_controlunit:iFSM_controlunit|nx_state.MVI1_864    ; Processor:iProcessor|FSM_controlunit:iFSM_controlunit|Selector47 ; yes                    ;
+; Processor:iProcessor|FSM_controlunit:iFSM_controlunit|nx_state.IWAIT_927   ; Processor:iProcessor|FSM_controlunit:iFSM_controlunit|Selector47 ; yes                    ;
+; Processor:iProcessor|FSM_controlunit:iFSM_controlunit|nx_state.MVI2_843    ; Processor:iProcessor|FSM_controlunit:iFSM_controlunit|Selector47 ; yes                    ;
+; Processor:iProcessor|FSM_controlunit:iFSM_controlunit|nx_state.ADD1_801    ; Processor:iProcessor|FSM_controlunit:iFSM_controlunit|Selector47 ; yes                    ;
+; Processor:iProcessor|FSM_controlunit:iFSM_controlunit|nx_state.SUB1_738    ; Processor:iProcessor|FSM_controlunit:iFSM_controlunit|Selector47 ; yes                    ;
+; Processor:iProcessor|FSM_controlunit:iFSM_controlunit|nx_state.ST1_633     ; Processor:iProcessor|FSM_controlunit:iFSM_controlunit|Selector47 ; yes                    ;
+; Processor:iProcessor|FSM_controlunit:iFSM_controlunit|nx_state.LD1_675     ; Processor:iProcessor|FSM_controlunit:iFSM_controlunit|Selector47 ; yes                    ;
+; Processor:iProcessor|FSM_controlunit:iFSM_controlunit|nx_state.ADD2_780    ; Processor:iProcessor|FSM_controlunit:iFSM_controlunit|Selector47 ; yes                    ;
+; Processor:iProcessor|FSM_controlunit:iFSM_controlunit|nx_state.SUB2_717    ; Processor:iProcessor|FSM_controlunit:iFSM_controlunit|Selector47 ; yes                    ;
+; Processor:iProcessor|FSM_controlunit:iFSM_controlunit|ADD_SUB              ; Processor:iProcessor|FSM_controlunit:iFSM_controlunit|G_I        ; yes                    ;
+; Number of user-specified and inferred latches = 18                         ;                                                                  ;                        ;
++----------------------------------------------------------------------------+------------------------------------------------------------------+------------------------+
+Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 187   ;
+; Number of registers using Synchronous Clear  ; 0     ;
+; Number of registers using Synchronous Load   ; 18    ;
+; Number of registers using Asynchronous Clear ; 152   ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 143   ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++--------------------------------------------------------------------------+
+; Registers Added for RAM Pass-Through Logic                               ;
++------------------------------------------+-------------------------------+
+; Register Name                            ; RAM Name                      ;
++------------------------------------------+-------------------------------+
+; memory:imemory|user_RAM_rtl_0_bypass[0]  ; memory:imemory|user_RAM_rtl_0 ;
+; memory:imemory|user_RAM_rtl_0_bypass[1]  ; memory:imemory|user_RAM_rtl_0 ;
+; memory:imemory|user_RAM_rtl_0_bypass[2]  ; memory:imemory|user_RAM_rtl_0 ;
+; memory:imemory|user_RAM_rtl_0_bypass[3]  ; memory:imemory|user_RAM_rtl_0 ;
+; memory:imemory|user_RAM_rtl_0_bypass[4]  ; memory:imemory|user_RAM_rtl_0 ;
+; memory:imemory|user_RAM_rtl_0_bypass[5]  ; memory:imemory|user_RAM_rtl_0 ;
+; memory:imemory|user_RAM_rtl_0_bypass[6]  ; memory:imemory|user_RAM_rtl_0 ;
+; memory:imemory|user_RAM_rtl_0_bypass[7]  ; memory:imemory|user_RAM_rtl_0 ;
+; memory:imemory|user_RAM_rtl_0_bypass[8]  ; memory:imemory|user_RAM_rtl_0 ;
+; memory:imemory|user_RAM_rtl_0_bypass[9]  ; memory:imemory|user_RAM_rtl_0 ;
+; memory:imemory|user_RAM_rtl_0_bypass[10] ; memory:imemory|user_RAM_rtl_0 ;
+; memory:imemory|user_RAM_rtl_0_bypass[11] ; memory:imemory|user_RAM_rtl_0 ;
+; memory:imemory|user_RAM_rtl_0_bypass[12] ; memory:imemory|user_RAM_rtl_0 ;
+; memory:imemory|user_RAM_rtl_0_bypass[13] ; memory:imemory|user_RAM_rtl_0 ;
+; memory:imemory|user_RAM_rtl_0_bypass[14] ; memory:imemory|user_RAM_rtl_0 ;
+; memory:imemory|user_RAM_rtl_0_bypass[15] ; memory:imemory|user_RAM_rtl_0 ;
+; memory:imemory|user_RAM_rtl_0_bypass[16] ; memory:imemory|user_RAM_rtl_0 ;
+; memory:imemory|user_RAM_rtl_0_bypass[17] ; memory:imemory|user_RAM_rtl_0 ;
+; memory:imemory|user_RAM_rtl_0_bypass[18] ; memory:imemory|user_RAM_rtl_0 ;
+; memory:imemory|user_RAM_rtl_0_bypass[19] ; memory:imemory|user_RAM_rtl_0 ;
+; memory:imemory|user_RAM_rtl_0_bypass[20] ; memory:imemory|user_RAM_rtl_0 ;
+; memory:imemory|user_RAM_rtl_0_bypass[21] ; memory:imemory|user_RAM_rtl_0 ;
+; memory:imemory|user_RAM_rtl_0_bypass[22] ; memory:imemory|user_RAM_rtl_0 ;
+; memory:imemory|user_RAM_rtl_0_bypass[23] ; memory:imemory|user_RAM_rtl_0 ;
++------------------------------------------+-------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                            ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                  ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------+
+; 3:1                ; 9 bits    ; 18 LEs        ; 18 LEs               ; 0 LEs                  ; No         ; |wrapper|Processor:iProcessor|PC:iPC|count                                  ;
+; 4:1                ; 9 bits    ; 18 LEs        ; 18 LEs               ; 0 LEs                  ; No         ; |wrapper|memory:imemory|DATA_OUT[2]                                         ;
+; 8:1                ; 2 bits    ; 10 LEs        ; 4 LEs                ; 6 LEs                  ; No         ; |wrapper|Processor:iProcessor|FSM_controlunit:iFSM_controlunit|nx_state.ST1 ;
+; 6:1                ; 8 bits    ; 32 LEs        ; 24 LEs               ; 8 LEs                  ; No         ; |wrapper|Processor:iProcessor|FSM_controlunit:iFSM_controlunit|Selector20   ;
+; 10:1               ; 9 bits    ; 54 LEs        ; 54 LEs               ; 0 LEs                  ; No         ; |wrapper|Processor:iProcessor|mine10to1mux:Imine10to1mux|Outmux[5]          ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------+
+; Source assignments for memory:imemory|altsyncram:user_RAM_rtl_0|altsyncram_sam1:auto_generated ;
++---------------------------------+--------------------+------+----------------------------------+
+; Assignment                      ; Value              ; From ; To                               ;
++---------------------------------+--------------------+------+----------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                ;
++---------------------------------+--------------------+------+----------------------------------+
+
+
++--------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Processor:iProcessor|regn:iregn_0 ;
++----------------+-------+-------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                  ;
++----------------+-------+-------------------------------------------------------+
+; n              ; 9     ; Signed Integer                                        ;
++----------------+-------+-------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Processor:iProcessor|regn:iregn_1 ;
++----------------+-------+-------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                  ;
++----------------+-------+-------------------------------------------------------+
+; n              ; 9     ; Signed Integer                                        ;
++----------------+-------+-------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Processor:iProcessor|regn:iregn_2 ;
++----------------+-------+-------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                  ;
++----------------+-------+-------------------------------------------------------+
+; n              ; 9     ; Signed Integer                                        ;
++----------------+-------+-------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Processor:iProcessor|regn:iregn_3 ;
++----------------+-------+-------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                  ;
++----------------+-------+-------------------------------------------------------+
+; n              ; 9     ; Signed Integer                                        ;
++----------------+-------+-------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Processor:iProcessor|regn:iregn_4 ;
++----------------+-------+-------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                  ;
++----------------+-------+-------------------------------------------------------+
+; n              ; 9     ; Signed Integer                                        ;
++----------------+-------+-------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Processor:iProcessor|regn:iregn_5 ;
++----------------+-------+-------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                  ;
++----------------+-------+-------------------------------------------------------+
+; n              ; 9     ; Signed Integer                                        ;
++----------------+-------+-------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Processor:iProcessor|regn:iregn_6 ;
++----------------+-------+-------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                  ;
++----------------+-------+-------------------------------------------------------+
+; n              ; 9     ; Signed Integer                                        ;
++----------------+-------+-------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Processor:iProcessor|regn:iregn_A ;
++----------------+-------+-------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                  ;
++----------------+-------+-------------------------------------------------------+
+; n              ; 9     ; Signed Integer                                        ;
++----------------+-------+-------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Processor:iProcessor|regn:iregn_G ;
++----------------+-------+-------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                  ;
++----------------+-------+-------------------------------------------------------+
+; n              ; 9     ; Signed Integer                                        ;
++----------------+-------+-------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Processor:iProcessor|regn:iregn_IR ;
++----------------+-------+--------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                   ;
++----------------+-------+--------------------------------------------------------+
+; n              ; 9     ; Signed Integer                                         ;
++----------------+-------+--------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Processor:iProcessor|regn:iregn_ADDR ;
++----------------+-------+----------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                     ;
++----------------+-------+----------------------------------------------------------+
+; n              ; 9     ; Signed Integer                                           ;
++----------------+-------+----------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Processor:iProcessor|regn:iregn_DOUT ;
++----------------+-------+----------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                     ;
++----------------+-------+----------------------------------------------------------+
+; n              ; 9     ; Signed Integer                                           ;
++----------------+-------+----------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: memory:imemory ;
++----------------+-------+------------------------------------+
+; Parameter Name ; Value ; Type                               ;
++----------------+-------+------------------------------------+
+; addr_width     ; 128   ; Signed Integer                     ;
+; addr_bits      ; 7     ; Signed Integer                     ;
+; data_width     ; 9     ; Signed Integer                     ;
++----------------+-------+------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------+
+; Parameter Settings for User Entity Instance: regn:iregn ;
++----------------+-------+--------------------------------+
+; Parameter Name ; Value ; Type                           ;
++----------------+-------+--------------------------------+
+; n              ; 9     ; Signed Integer                 ;
++----------------+-------+--------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: memory:imemory|altsyncram:user_RAM_rtl_0 ;
++------------------------------------+----------------------+-------------------------------+
+; Parameter Name                     ; Value                ; Type                          ;
++------------------------------------+----------------------+-------------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                       ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                    ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY                  ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE                  ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE                ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                       ;
+; OPERATION_MODE                     ; DUAL_PORT            ; Untyped                       ;
+; WIDTH_A                            ; 9                    ; Untyped                       ;
+; WIDTHAD_A                          ; 7                    ; Untyped                       ;
+; NUMWORDS_A                         ; 128                  ; Untyped                       ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                       ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                       ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                       ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                       ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                       ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                       ;
+; WIDTH_B                            ; 9                    ; Untyped                       ;
+; WIDTHAD_B                          ; 7                    ; Untyped                       ;
+; NUMWORDS_B                         ; 128                  ; Untyped                       ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                       ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                       ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                       ;
+; ADDRESS_REG_B                      ; CLOCK0               ; Untyped                       ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                       ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                       ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                       ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                       ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                       ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                       ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                       ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                       ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Untyped                       ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                       ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                       ;
+; BYTE_SIZE                          ; 8                    ; Untyped                       ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                       ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                       ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                       ;
+; INIT_FILE                          ; ram_data.mif         ; Untyped                       ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                       ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                       ;
+; CLOCK_ENABLE_INPUT_A               ; NORMAL               ; Untyped                       ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                       ;
+; CLOCK_ENABLE_OUTPUT_A              ; NORMAL               ; Untyped                       ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                       ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                       ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                       ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                       ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                       ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                       ;
+; DEVICE_FAMILY                      ; Cyclone V            ; Untyped                       ;
+; CBXI_PARAMETER                     ; altsyncram_sam1      ; Untyped                       ;
++------------------------------------+----------------------+-------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------+
+; altsyncram Parameter Settings by Entity Instance                                     ;
++-------------------------------------------+------------------------------------------+
+; Name                                      ; Value                                    ;
++-------------------------------------------+------------------------------------------+
+; Number of entity instances                ; 1                                        ;
+; Entity Instance                           ; memory:imemory|altsyncram:user_RAM_rtl_0 ;
+;     -- OPERATION_MODE                     ; DUAL_PORT                                ;
+;     -- WIDTH_A                            ; 9                                        ;
+;     -- NUMWORDS_A                         ; 128                                      ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                             ;
+;     -- WIDTH_B                            ; 9                                        ;
+;     -- NUMWORDS_B                         ; 128                                      ;
+;     -- ADDRESS_REG_B                      ; CLOCK0                                   ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                             ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                     ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                ;
++-------------------------------------------+------------------------------------------+
+
+
++------------------------------------------------------+
+; Port Connectivity Checks: "my_7seghex:imy_7seghex_2" ;
++---------+-------+----------+-------------------------+
+; Port    ; Type  ; Severity ; Details                 ;
++---------+-------+----------+-------------------------+
+; c[3..1] ; Input ; Info     ; Stuck at GND            ;
++---------+-------+----------+-------------------------+
+
+
++------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "Processor:iProcessor|FSM_controlunit:iFSM_controlunit|dec3to8:Idec3to8_7" ;
++------+-------+----------+----------------------------------------------------------------------------+
+; Port ; Type  ; Severity ; Details                                                                    ;
++------+-------+----------+----------------------------------------------------------------------------+
+; w    ; Input ; Info     ; Stuck at VCC                                                               ;
+; en   ; Input ; Info     ; Stuck at VCC                                                               ;
++------+-------+----------+----------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "Processor:iProcessor|FSM_controlunit:iFSM_controlunit|dec3to8:Idec3to8_Y" ;
++------+-------+----------+----------------------------------------------------------------------------+
+; Port ; Type  ; Severity ; Details                                                                    ;
++------+-------+----------+----------------------------------------------------------------------------+
+; en   ; Input ; Info     ; Stuck at VCC                                                               ;
++------+-------+----------+----------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "Processor:iProcessor|FSM_controlunit:iFSM_controlunit|dec3to8:Idec3to8_X" ;
++------+-------+----------+----------------------------------------------------------------------------+
+; Port ; Type  ; Severity ; Details                                                                    ;
++------+-------+----------+----------------------------------------------------------------------------+
+; en   ; Input ; Info     ; Stuck at VCC                                                               ;
++------+-------+----------+----------------------------------------------------------------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; arriav_ff             ; 187                         ;
+;     CLR               ; 18                          ;
+;     CLR SLD           ; 9                           ;
+;     ENA               ; 9                           ;
+;     ENA CLR           ; 125                         ;
+;     ENA SLD           ; 9                           ;
+;     plain             ; 17                          ;
+; arriav_lcell_comb     ; 207                         ;
+;     arith             ; 19                          ;
+;         1 data inputs ; 10                          ;
+;         3 data inputs ; 9                           ;
+;     normal            ; 188                         ;
+;         0 data inputs ; 2                           ;
+;         1 data inputs ; 6                           ;
+;         2 data inputs ; 15                          ;
+;         3 data inputs ; 37                          ;
+;         4 data inputs ; 58                          ;
+;         5 data inputs ; 26                          ;
+;         6 data inputs ; 44                          ;
+; boundary_port         ; 55                          ;
+; stratixv_ram_block    ; 9                           ;
+;                       ;                             ;
+; Max LUT depth         ; 9.80                        ;
+; Average LUT depth     ; 4.94                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:00     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+    Info: Processing started: Thu Nov 02 22:25:08 2023
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off wrapper -c wrapper
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 16 of the 16 processors detected
+Info (12021): Found 2 design units, including 1 entities, in source file wrapper.vhdl
+    Info (12022): Found design unit 1: wrapper-Behavior File: D:/code/quartus/lab6/wrapper.vhdl Line: 12
+    Info (12023): Found entity 1: wrapper File: D:/code/quartus/lab6/wrapper.vhdl Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file regn.vhdl
+    Info (12022): Found design unit 1: regn-behavioral File: D:/code/quartus/lab6/regn.vhdl Line: 9
+    Info (12023): Found entity 1: regn File: D:/code/quartus/lab6/regn.vhdl Line: 3
+Info (12021): Found 2 design units, including 1 entities, in source file processor.vhdl
+    Info (12022): Found design unit 1: Processor-Behavior File: D:/code/quartus/lab6/Processor.vhdl Line: 15
+    Info (12023): Found entity 1: Processor File: D:/code/quartus/lab6/Processor.vhdl Line: 6
+Info (12021): Found 2 design units, including 1 entities, in source file pc.vhdl
+    Info (12022): Found design unit 1: PC-Behavioral File: D:/code/quartus/lab6/PC.vhdl Line: 10
+    Info (12023): Found entity 1: PC File: D:/code/quartus/lab6/PC.vhdl Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file my_7seghex.vhdl
+    Info (12022): Found design unit 1: my_7seghex-dataflow File: D:/code/quartus/lab6/my_7seghex.vhdl Line: 7
+    Info (12023): Found entity 1: my_7seghex File: D:/code/quartus/lab6/my_7seghex.vhdl Line: 3
+Info (12021): Found 2 design units, including 1 entities, in source file minedffpositive_edge.vhdl
+    Info (12022): Found design unit 1: mineDFFpositive_edge-behavior File: D:/code/quartus/lab6/mineDFFpositive_edge.vhdl Line: 7
+    Info (12023): Found entity 1: mineDFFpositive_edge File: D:/code/quartus/lab6/mineDFFpositive_edge.vhdl Line: 3
+Info (12021): Found 2 design units, including 1 entities, in source file mine10to1mux.vhdl
+    Info (12022): Found design unit 1: mine10to1mux-structural File: D:/code/quartus/lab6/mine10to1mux.vhdl Line: 10
+    Info (12023): Found entity 1: mine10to1mux File: D:/code/quartus/lab6/mine10to1mux.vhdl Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file memory.vhdl
+    Info (12022): Found design unit 1: memory-arch File: D:/code/quartus/lab6/memory.vhdl Line: 17
+    Info (12023): Found entity 1: memory File: D:/code/quartus/lab6/memory.vhdl Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file fsm_controlunit.vhdl
+    Info (12022): Found design unit 1: FSM_controlunit-behavior File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 15
+    Info (12023): Found entity 1: FSM_controlunit File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file dec3to8.vhdl
+    Info (12022): Found design unit 1: dec3to8-Behavior File: D:/code/quartus/lab6/dec3to8.vhdl Line: 8
+    Info (12023): Found entity 1: dec3to8 File: D:/code/quartus/lab6/dec3to8.vhdl Line: 3
+Info (12127): Elaborating entity "wrapper" for the top level hierarchy
+Info (12128): Elaborating entity "Processor" for hierarchy "Processor:iProcessor" File: D:/code/quartus/lab6/wrapper.vhdl Line: 56
+Info (12128): Elaborating entity "FSM_controlunit" for hierarchy "Processor:iProcessor|FSM_controlunit:iFSM_controlunit" File: D:/code/quartus/lab6/Processor.vhdl Line: 65
+Warning (10631): VHDL Process Statement warning at FSM_controlunit.vhdl(36): inferring latch(es) for signal or variable "nx_state", which holds its previous value in one or more paths through the process File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 36
+Warning (10492): VHDL Process Statement warning at FSM_controlunit.vhdl(134): signal "R7_TEMP" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 134
+Warning (10492): VHDL Process Statement warning at FSM_controlunit.vhdl(157): signal "RX_TEMP" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 157
+Warning (10492): VHDL Process Statement warning at FSM_controlunit.vhdl(160): signal "RY_TEMP" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 160
+Warning (10492): VHDL Process Statement warning at FSM_controlunit.vhdl(167): signal "RX_TEMP" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 167
+Warning (10492): VHDL Process Statement warning at FSM_controlunit.vhdl(190): signal "R7_TEMP" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 190
+Warning (10492): VHDL Process Statement warning at FSM_controlunit.vhdl(200): signal "RX_TEMP" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 200
+Warning (10492): VHDL Process Statement warning at FSM_controlunit.vhdl(210): signal "RX_TEMP" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 210
+Warning (10492): VHDL Process Statement warning at FSM_controlunit.vhdl(220): signal "RX_TEMP" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 220
+Warning (10492): VHDL Process Statement warning at FSM_controlunit.vhdl(233): signal "RY_TEMP" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 233
+Warning (10492): VHDL Process Statement warning at FSM_controlunit.vhdl(244): signal "RX_TEMP" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 244
+Warning (10492): VHDL Process Statement warning at FSM_controlunit.vhdl(254): signal "RX_TEMP" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 254
+Warning (10492): VHDL Process Statement warning at FSM_controlunit.vhdl(264): signal "RX_TEMP" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 264
+Warning (10492): VHDL Process Statement warning at FSM_controlunit.vhdl(277): signal "RY_TEMP" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 277
+Warning (10492): VHDL Process Statement warning at FSM_controlunit.vhdl(288): signal "RX_TEMP" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 288
+Warning (10492): VHDL Process Statement warning at FSM_controlunit.vhdl(298): signal "RX_TEMP" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 298
+Warning (10492): VHDL Process Statement warning at FSM_controlunit.vhdl(308): signal "RY_TEMP" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 308
+Warning (10492): VHDL Process Statement warning at FSM_controlunit.vhdl(318): signal "RX_TEMP" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 318
+Warning (10492): VHDL Process Statement warning at FSM_controlunit.vhdl(328): signal "RX_TEMP" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 328
+Warning (10492): VHDL Process Statement warning at FSM_controlunit.vhdl(338): signal "RX_TEMP" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 338
+Warning (10492): VHDL Process Statement warning at FSM_controlunit.vhdl(351): signal "RY_TEMP" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 351
+Warning (10492): VHDL Process Statement warning at FSM_controlunit.vhdl(360): signal "G" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 360
+Warning (10492): VHDL Process Statement warning at FSM_controlunit.vhdl(375): signal "RX_TEMP" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 375
+Warning (10492): VHDL Process Statement warning at FSM_controlunit.vhdl(378): signal "RY_TEMP" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 378
+Warning (10492): VHDL Process Statement warning at FSM_controlunit.vhdl(385): signal "RX_TEMP" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 385
+Warning (10631): VHDL Process Statement warning at FSM_controlunit.vhdl(126): inferring latch(es) for signal or variable "ADD_SUB", which holds its previous value in one or more paths through the process File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 126
+Info (10041): Inferred latch for "ADD_SUB" at FSM_controlunit.vhdl(126) File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 126
+Info (10041): Inferred latch for "nx_state.MVNZ" at FSM_controlunit.vhdl(36) File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 36
+Info (10041): Inferred latch for "nx_state.ST2" at FSM_controlunit.vhdl(36) File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 36
+Info (10041): Inferred latch for "nx_state.ST1" at FSM_controlunit.vhdl(36) File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 36
+Info (10041): Inferred latch for "nx_state.LD2" at FSM_controlunit.vhdl(36) File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 36
+Info (10041): Inferred latch for "nx_state.LD1" at FSM_controlunit.vhdl(36) File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 36
+Info (10041): Inferred latch for "nx_state.SUB3" at FSM_controlunit.vhdl(36) File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 36
+Info (10041): Inferred latch for "nx_state.SUB2" at FSM_controlunit.vhdl(36) File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 36
+Info (10041): Inferred latch for "nx_state.SUB1" at FSM_controlunit.vhdl(36) File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 36
+Info (10041): Inferred latch for "nx_state.ADD3" at FSM_controlunit.vhdl(36) File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 36
+Info (10041): Inferred latch for "nx_state.ADD2" at FSM_controlunit.vhdl(36) File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 36
+Info (10041): Inferred latch for "nx_state.ADD1" at FSM_controlunit.vhdl(36) File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 36
+Info (10041): Inferred latch for "nx_state.MVI3" at FSM_controlunit.vhdl(36) File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 36
+Info (10041): Inferred latch for "nx_state.MVI2" at FSM_controlunit.vhdl(36) File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 36
+Info (10041): Inferred latch for "nx_state.MVI1" at FSM_controlunit.vhdl(36) File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 36
+Info (10041): Inferred latch for "nx_state.MV" at FSM_controlunit.vhdl(36) File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 36
+Info (10041): Inferred latch for "nx_state.INITIAL" at FSM_controlunit.vhdl(36) File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 36
+Info (10041): Inferred latch for "nx_state.IWAIT" at FSM_controlunit.vhdl(36) File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 36
+Info (12128): Elaborating entity "dec3to8" for hierarchy "Processor:iProcessor|FSM_controlunit:iFSM_controlunit|dec3to8:Idec3to8_X" File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 123
+Info (12128): Elaborating entity "regn" for hierarchy "Processor:iProcessor|regn:iregn_0" File: D:/code/quartus/lab6/Processor.vhdl Line: 85
+Warning (10492): VHDL Process Statement warning at regn.vhdl(15): signal "Load" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/code/quartus/lab6/regn.vhdl Line: 15
+Info (12128): Elaborating entity "PC" for hierarchy "Processor:iProcessor|PC:iPC" File: D:/code/quartus/lab6/Processor.vhdl Line: 93
+Info (12128): Elaborating entity "mineDFFpositive_edge" for hierarchy "Processor:iProcessor|mineDFFpositive_edge:iregn_WD" File: D:/code/quartus/lab6/Processor.vhdl Line: 100
+Info (12128): Elaborating entity "mine10to1mux" for hierarchy "Processor:iProcessor|mine10to1mux:Imine10to1mux" File: D:/code/quartus/lab6/Processor.vhdl Line: 103
+Warning (10492): VHDL Process Statement warning at mine10to1mux.vhdl(15): signal "R0" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/code/quartus/lab6/mine10to1mux.vhdl Line: 15
+Warning (10492): VHDL Process Statement warning at mine10to1mux.vhdl(17): signal "R1" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/code/quartus/lab6/mine10to1mux.vhdl Line: 17
+Warning (10492): VHDL Process Statement warning at mine10to1mux.vhdl(19): signal "R2" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/code/quartus/lab6/mine10to1mux.vhdl Line: 19
+Warning (10492): VHDL Process Statement warning at mine10to1mux.vhdl(21): signal "R3" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/code/quartus/lab6/mine10to1mux.vhdl Line: 21
+Warning (10492): VHDL Process Statement warning at mine10to1mux.vhdl(23): signal "R4" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/code/quartus/lab6/mine10to1mux.vhdl Line: 23
+Warning (10492): VHDL Process Statement warning at mine10to1mux.vhdl(25): signal "R5" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/code/quartus/lab6/mine10to1mux.vhdl Line: 25
+Warning (10492): VHDL Process Statement warning at mine10to1mux.vhdl(27): signal "R6" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/code/quartus/lab6/mine10to1mux.vhdl Line: 27
+Warning (10492): VHDL Process Statement warning at mine10to1mux.vhdl(29): signal "R7" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/code/quartus/lab6/mine10to1mux.vhdl Line: 29
+Warning (10492): VHDL Process Statement warning at mine10to1mux.vhdl(31): signal "Gout" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/code/quartus/lab6/mine10to1mux.vhdl Line: 31
+Warning (10492): VHDL Process Statement warning at mine10to1mux.vhdl(33): signal "Din" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: D:/code/quartus/lab6/mine10to1mux.vhdl Line: 33
+Info (12128): Elaborating entity "my_7seghex" for hierarchy "Processor:iProcessor|my_7seghex:imy_7seghex_4" File: D:/code/quartus/lab6/Processor.vhdl Line: 124
+Info (12128): Elaborating entity "memory" for hierarchy "memory:imemory" File: D:/code/quartus/lab6/wrapper.vhdl Line: 57
+Critical Warning (127003): Can't find Memory Initialization File or Hexadecimal (Intel-Format) File D:/code/quartus/lab6/ram_data.mif -- setting all initial values to 0
+Warning (276020): Inferred RAM node "memory:imemory|user_RAM_rtl_0" from synchronous design logic.  Pass-through logic has been added to match the read-during-write behavior of the original design.
+Info (19000): Inferred 1 megafunctions from design logic
+    Info (276029): Inferred altsyncram megafunction from the following design logic: "memory:imemory|user_RAM_rtl_0" 
+        Info (286033): Parameter OPERATION_MODE set to DUAL_PORT
+        Info (286033): Parameter WIDTH_A set to 9
+        Info (286033): Parameter WIDTHAD_A set to 7
+        Info (286033): Parameter NUMWORDS_A set to 128
+        Info (286033): Parameter WIDTH_B set to 9
+        Info (286033): Parameter WIDTHAD_B set to 7
+        Info (286033): Parameter NUMWORDS_B set to 128
+        Info (286033): Parameter ADDRESS_ACLR_A set to NONE
+        Info (286033): Parameter OUTDATA_REG_B set to UNREGISTERED
+        Info (286033): Parameter ADDRESS_ACLR_B set to NONE
+        Info (286033): Parameter OUTDATA_ACLR_B set to NONE
+        Info (286033): Parameter ADDRESS_REG_B set to CLOCK0
+        Info (286033): Parameter INDATA_ACLR_A set to NONE
+        Info (286033): Parameter WRCONTROL_ACLR_A set to NONE
+        Info (286033): Parameter INIT_FILE set to ram_data.mif
+Info (12130): Elaborated megafunction instantiation "memory:imemory|altsyncram:user_RAM_rtl_0"
+Info (12133): Instantiated megafunction "memory:imemory|altsyncram:user_RAM_rtl_0" with the following parameter:
+    Info (12134): Parameter "OPERATION_MODE" = "DUAL_PORT"
+    Info (12134): Parameter "WIDTH_A" = "9"
+    Info (12134): Parameter "WIDTHAD_A" = "7"
+    Info (12134): Parameter "NUMWORDS_A" = "128"
+    Info (12134): Parameter "WIDTH_B" = "9"
+    Info (12134): Parameter "WIDTHAD_B" = "7"
+    Info (12134): Parameter "NUMWORDS_B" = "128"
+    Info (12134): Parameter "ADDRESS_ACLR_A" = "NONE"
+    Info (12134): Parameter "OUTDATA_REG_B" = "UNREGISTERED"
+    Info (12134): Parameter "ADDRESS_ACLR_B" = "NONE"
+    Info (12134): Parameter "OUTDATA_ACLR_B" = "NONE"
+    Info (12134): Parameter "ADDRESS_REG_B" = "CLOCK0"
+    Info (12134): Parameter "INDATA_ACLR_A" = "NONE"
+    Info (12134): Parameter "WRCONTROL_ACLR_A" = "NONE"
+    Info (12134): Parameter "INIT_FILE" = "ram_data.mif"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_sam1.tdf
+    Info (12023): Found entity 1: altsyncram_sam1 File: D:/code/quartus/lab6/db/altsyncram_sam1.tdf Line: 27
+Warning (13012): Latch Processor:iProcessor|FSM_controlunit:iFSM_controlunit|nx_state.MV_885 has unsafe behavior File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 36
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal Processor:iProcessor|regn:iregn_IR|Q[6] File: D:/code/quartus/lab6/regn.vhdl Line: 13
+Warning (13012): Latch Processor:iProcessor|FSM_controlunit:iFSM_controlunit|nx_state.MVNZ_591 has unsafe behavior File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 36
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal Processor:iProcessor|FSM_controlunit:iFSM_controlunit|pr_state.INITIAL File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 23
+Warning (13012): Latch Processor:iProcessor|FSM_controlunit:iFSM_controlunit|nx_state.MVI1_864 has unsafe behavior File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 36
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal Processor:iProcessor|regn:iregn_IR|Q[6] File: D:/code/quartus/lab6/regn.vhdl Line: 13
+Warning (13012): Latch Processor:iProcessor|FSM_controlunit:iFSM_controlunit|nx_state.ADD1_801 has unsafe behavior File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 36
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal Processor:iProcessor|regn:iregn_IR|Q[6] File: D:/code/quartus/lab6/regn.vhdl Line: 13
+Warning (13012): Latch Processor:iProcessor|FSM_controlunit:iFSM_controlunit|nx_state.SUB1_738 has unsafe behavior File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 36
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal Processor:iProcessor|regn:iregn_IR|Q[6] File: D:/code/quartus/lab6/regn.vhdl Line: 13
+Warning (13012): Latch Processor:iProcessor|FSM_controlunit:iFSM_controlunit|nx_state.ST1_633 has unsafe behavior File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 36
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal Processor:iProcessor|FSM_controlunit:iFSM_controlunit|pr_state.INITIAL File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 23
+Warning (13012): Latch Processor:iProcessor|FSM_controlunit:iFSM_controlunit|nx_state.LD1_675 has unsafe behavior File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 36
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal Processor:iProcessor|FSM_controlunit:iFSM_controlunit|pr_state.INITIAL File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 23
+Warning (13012): Latch Processor:iProcessor|FSM_controlunit:iFSM_controlunit|ADD_SUB has unsafe behavior File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 10
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal Processor:iProcessor|FSM_controlunit:iFSM_controlunit|pr_state.SUB2 File: D:/code/quartus/lab6/FSM_controlunit.vhdl Line: 23
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "HEX2[6]" is stuck at VCC File: D:/code/quartus/lab6/wrapper.vhdl Line: 9
+    Warning (13410): Pin "HEX2[2]" is stuck at GND File: D:/code/quartus/lab6/wrapper.vhdl Line: 9
+    Warning (13410): Pin "HEX2[1]" is stuck at GND File: D:/code/quartus/lab6/wrapper.vhdl Line: 9
+Info (286030): Timing-Driven Synthesis is running
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Info (21057): Implemented 441 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 3 input pins
+    Info (21059): Implemented 52 output pins
+    Info (21061): Implemented 377 logic cells
+    Info (21064): Implemented 9 RAM segments
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 60 warnings
+    Info: Peak virtual memory: 4927 megabytes
+    Info: Processing ended: Thu Nov 02 22:25:20 2023
+    Info: Elapsed time: 00:00:12
+    Info: Total CPU time (on all processors): 00:00:25
+
+
